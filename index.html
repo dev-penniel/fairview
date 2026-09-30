@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fairview Solutions — Consulting, Training & Supply</title>
+  <meta name="description" content="Fairview Solutions provides integrated consulting, professional training, ICT support, procurement and events management solutions across Lesotho." />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#312E81',
+            primaryDark: '#211D5C',
+            accent: '#F97316',
+            ink: '#172033',
+            cream: '#FAFAF8',
+            mist: '#F3F4F8',
+            line: '#E7E8EF'
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            display: ['Playfair Display', 'Georgia', 'serif']
+          },
+          boxShadow: {
+            soft: '0 24px 70px rgba(49,46,129,.10)',
+            card: '0 12px 40px rgba(23,32,51,.07)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icon.png">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; }
+    .display { font-family: 'Playfair Display', Georgia, serif; }
+    [x-cloak] { display: none !important; }
+    .grid-pattern {
+      background-image:
+        linear-gradient(rgba(49,46,129,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(49,46,129,.055) 1px, transparent 1px);
+      background-size: 34px 34px;
+    }
+    .hero-glow {
+      background:
+        radial-gradient(circle at 82% 15%, rgba(249,115,22,.17), transparent 28%),
+        radial-gradient(circle at 8% 88%, rgba(49,46,129,.11), transparent 28%);
+    }
+    .text-balance { text-wrap: balance; }
+  </style>
+</head>
+
+<body class="bg-white text-slate-700 antialiased" x-data="{ mobile:false, openFaq:null }">
+
+<!-- TOP BAR -->
+<div class="hidden md:block bg-primaryDark text-white">
+  <div class="mx-auto max-w-7xl px-6 py-2.5 flex items-center justify-between text-[11px]">
+    <div class="flex gap-5 text-white/75">
+      <span>Professional Consulting • Training • Supply</span>
+      <span class="text-white/25">|</span>
+      <span>Nationwide deployment across Lesotho</span>
+    </div>
+    <div class="flex gap-5 text-white/80">
+      <a href="tel:+26658049252" class="hover:text-accent transition">+266 5804 9252</a>
+      <a href="mailto:makaut@lesotho.adventist.org" class="hover:text-accent transition">makaut@fairview.co.ls</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-line">
+  <div class="mx-auto max-w-7xl px-5 sm:px-6">
+    <div class="h-[76px] flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3">
+        <div class="h-12 w-12 rounded-2xl text-white grid place-items-center">
+          <img src="fairview.png" alt="">
+        </div>
+        <div>
+          <div class="font-bold tracking-tight text-ink leading-none">Fairview Solutions</div>
+          <div class="text-[10px] uppercase tracking-[.22em] text-primary mt-1">Consulting • Training • Supply</div>
+        </div>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-600">
+        <a href="#about" class="hover:text-primary transition">About</a>
+        <a href="#services" class="hover:text-primary transition">Services</a>
+        <a href="#training" class="hover:text-primary transition">Training</a>
+        <a href="#experts" class="hover:text-primary transition">Experts</a>
+        <a href="#experience" class="hover:text-primary transition">Experience</a>
+        <a href="#contact" class="hover:text-primary transition">Contact</a>
+      </nav>
+
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="https://wa.me/26658049252?text=Hello%20Fairview%20Accounting%20Professionals%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+          target="_blank"
+          class="px-4 py-2.5 rounded-full text-sm font-semibold text-primary hover:bg-mist transition">
+            WhatsApp
+        </a>
+        <a href="#contact" class="px-5 py-3 rounded-full bg-primary text-white text-sm font-semibold shadow-lg shadow-primary/20 hover:bg-primaryDark transition">Request a Consultation</a>
+      </div>
+
+      <button @click="mobile=!mobile" class="lg:hidden h-11 w-11 rounded-2xl border border-line grid place-items-center" aria-label="Toggle menu">
+        <svg x-show="!mobile" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg x-show="mobile" x-cloak class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div x-show="mobile" x-cloak x-transition class="lg:hidden pb-5">
+      <div class="rounded-3xl border border-line bg-mist p-3 space-y-1">
+        <a @click="mobile=false" href="#about" class="block px-4 py-3 rounded-2xl hover:bg-white">About</a>
+        <a @click="mobile=false" href="#services" class="block px-4 py-3 rounded-2xl hover:bg-white">Services</a>
+        <a @click="mobile=false" href="#training" class="block px-4 py-3 rounded-2xl hover:bg-white">Training</a>
+        <a @click="mobile=false" href="#experts" class="block px-4 py-3 rounded-2xl hover:bg-white">Experts</a>
+        <a @click="mobile=false" href="#experience" class="block px-4 py-3 rounded-2xl hover:bg-white">Experience</a>
+        <a @click="mobile=false" href="#contact" class="block px-4 py-3 rounded-2xl bg-primary text-white font-semibold">Request a Consultation</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="relative overflow-hidden bg-cream hero-glow">
+  <div class="absolute inset-0 grid-pattern opacity-60"></div>
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-6 py-14 sm:py-20 lg:py-24">
+    <div class="grid lg:grid-cols-[1.05fr_.95fr] gap-10 lg:gap-16 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white/80 px-3.5 py-2 text-xs font-semibold text-primary shadow-sm">
+          <span class="h-2 w-2 rounded-full bg-accent"></span>
+          One company. Integrated solutions. Local impact.
+        </div>
+
+        <h1 class="display mt-6 text-5xl sm:text-6xl lg:text-[68px] leading-[.98] tracking-[-.035em] text-ink text-balance">
+          Build stronger institutions with <span class="text-primary">the right expertise.</span>
+        </h1>
+
+        <p class="mt-6 max-w-2xl text-base sm:text-lg leading-8 text-slate-600">
+          Fairview Solutions brings together professional consulting, high-impact training, technology support and dependable procurement to help organizations perform, adapt and grow.
+        </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="#contact" class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-primary/20 hover:bg-primaryDark transition">
+            Book a Consultation
+            <span>→</span>
+          </a>
+          <a href="#training" class="inline-flex items-center justify-center rounded-full border border-line bg-white px-6 py-3.5 text-sm font-bold text-ink hover:border-primary/30 hover:text-primary transition">
+            Explore Training
+          </a>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-xs font-medium text-slate-500">
+          <span class="flex items-center gap-2"><span class="text-primary">✓</span> Lesotho-wide deployment</span>
+          <span class="flex items-center gap-2"><span class="text-primary">✓</span> Multidisciplinary specialists</span>
+          <span class="flex items-center gap-2"><span class="text-primary">✓</span> Tax-compliant entity</span>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -inset-5 rounded-[2.5rem] bg-primary/10 blur-2xl"></div>
+        <div class="relative overflow-hidden rounded-[2.5rem] border border-white bg-white p-2 shadow-soft">
+          <img src="fairview-hero.png" alt="Professionals collaborating in a modern meeting" class="h-[420px] sm:h-[500px] w-full rounded-[2rem] object-cover">
+          <div class="absolute left-6 bottom-6 right-6 rounded-3xl border border-white/30 bg-primary/90 backdrop-blur-xl p-5 text-white shadow-xl">
+            <div class="text-xs uppercase tracking-[.18em] text-white/65">Our approach</div>
+            <div class="mt-2 text-lg font-semibold">Curated expertise. Practical delivery. Measurable impact.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+      <div class="rounded-3xl border border-line bg-white/80 p-5">
+        <div class="text-2xl font-bold text-ink">2025</div>
+        <div class="mt-1 text-xs text-slate-500">Established in Lesotho</div>
+      </div>
+      <div class="rounded-3xl border border-line bg-white/80 p-5">
+        <div class="text-2xl font-bold text-ink">Nationwide</div>
+        <div class="mt-1 text-xs text-slate-500">Deployment capability</div>
+      </div>
+      <div class="rounded-3xl border border-line bg-white/80 p-5">
+        <div class="text-2xl font-bold text-ink">5+</div>
+        <div class="mt-1 text-xs text-slate-500">Specialist profiles</div>
+      </div>
+      <div class="rounded-3xl border border-line bg-white/80 p-5">
+        <div class="text-2xl font-bold text-ink">360°</div>
+        <div class="mt-1 text-xs text-slate-500">Integrated service model</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST / PROBLEM -->
+<section class="py-20 sm:py-24">
+  <div class="mx-auto max-w-7xl px-5 sm:px-6">
+    <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 lg:gap-20 items-start">
+      <div>
+        <div class="text-xs uppercase tracking-[.2em] font-bold text-accent">Why Fairview</div>
+        <h2 class="display mt-4 text-4xl sm:text-5xl leading-tight text-ink">When the challenge is complex, your solution should not be fragmented.</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="rounded-[2rem] border border-line p-6 bg-white hover:shadow-card transition">
+          <div class="h-11 w-11 rounded-2xl bg-primary/10 text-primary grid place-items-center font-bold">01</div>
+          <h3 class="mt-5 font-bold text-lg text-ink">One integrated partner</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-500">Access consulting, training, ICT, procurement and event support through one coordinated engagement.</p>
+        </div>
+        <div class="rounded-[2rem] border border-line p-6 bg-white hover:shadow-card transition">
+          <div class="h-11 w-11 rounded-2xl bg-accent/10 text-accent grid place-items-center font-bold">02</div>
+          <h3 class="mt-5 font-bold text-lg text-ink">Specialists on demand</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-500">We curate multidisciplinary experts around the exact technical and operational needs of your project.</p>
+        </div>
+        <div class="rounded-[2rem] border border-line p-6 bg-white hover:shadow-card transition">
+          <div class="h-11 w-11 rounded-2xl bg-primary/10 text-primary grid place-items-center font-bold">03</div>
+          <h3 class="mt-5 font-bold text-lg text-ink">Flexible engagement</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-500">Choose short-term technical deployments, bespoke workshops or longer-term retainer support.</p>
+        </div>
+        <div class="rounded-[2rem] border border-line p-6 bg-white hover:shadow-card transition">
+          <div class="h-11 w-11 rounded-2xl bg-accent/10 text-accent grid place-items-center font-bold">04</div>
+          <h3 class="mt-5 font-bold text-lg text-ink">Compliance minded</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-500">Our delivery is built around statutory requirements, professional standards and documented quality controls.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-20 sm:py-24 bg-mist">
+  <div class="mx-auto max-w-7xl px-5 sm:px-6">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="relative">
+        <div class="absolute -left-4 -bottom-4 w-32 h-32 rounded-[2rem] bg-accent/15"></div>
+        <img src="about.jpeg" alt="Professional team collaborating" class="relative w-full h-[470px] rounded-[2.5rem] object-cover shadow-soft">
+        <div class="absolute -right-3 sm:-right-8 top-8 rounded-3xl bg-white border border-line p-5 shadow-card max-w-[190px]">
+          <div class="text-3xl font-bold text-primary">18+</div>
+          <div class="text-xs leading-5 text-slate-500 mt-1">years of executive financial leadership represented within our founding leadership</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="text-xs uppercase tracking-[.2em] font-bold text-accent">About Fairview Solutions</div>
+        <h2 class="display mt-4 text-4xl sm:text-5xl leading-tight text-ink">Professional expertise, capacity building and reliable delivery.</h2>
+        <p class="mt-6 text-base leading-8 text-slate-600">Fairview Solutions (Pty) Ltd is a dynamic private consulting, training and supply company incorporated on 10 April 2025 under the Companies Act 2011 of Lesotho. Founded by Mr. Thato Makau, the company bridges expert professional advisory, specialized capacity building and dependable procurement.</p>
+
+        <div class="mt-8 grid sm:grid-cols-3 gap-3">
+          <div class="rounded-3xl border border-line bg-white p-5">
+            <div class="text-xs font-bold uppercase tracking-wider text-primary">Mission</div>
+            <p class="mt-2 text-xs leading-6 text-slate-500">Enhance institutional performance and sustainable development through integrated, fit-for-purpose solutions.</p>
+          </div>
+          <div class="rounded-3xl border border-line bg-white p-5">
+            <div class="text-xs font-bold uppercase tracking-wider text-primary">Vision</div>
+            <p class="mt-2 text-xs leading-6 text-slate-500">Be Lesotho's leading integrated service provider, trusted for excellence, reliable delivery and impact.</p>
+          </div>
+          <div class="rounded-3xl border border-line bg-white p-5">
+            <div class="text-xs font-bold uppercase tracking-wider text-primary">Values</div>
+            <p class="mt-2 text-xs leading-6 text-slate-500">Professionalism, integrity, quality, accountability, local expertise and responsiveness.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="py-20 sm:py-24">
+  <div class="mx-auto max-w-7xl px-5 sm:px-6">
+    <div class="max-w-3xl">
+      <div class="text-xs uppercase tracking-[.2em] font-bold text-accent">What we do</div>
+      <h2 class="display mt-4 text-4xl sm:text-5xl text-ink">Integrated services built around real institutional needs.</h2>
+      <p class="mt-5 text-slate-600 leading-7">From financial and management advisory to technology, procurement and events, Fairview brings practical capability under one roof.</p>
+    </div>
+
+    <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <article class="group rounded-[2rem] border border-line p-7 hover:shadow-card hover:-translate-y-1 transition bg-white">
+        <div class="h-12 w-12 rounded-2xl bg-primary text-white grid place-items-center font-bold">01</div>
+        <h3 class="mt-6 text-xl font-bold text-ink">Consultancy & Advisory</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-500">Management consultancy, accounting, bookkeeping, tax advisory, research, surveys and Monitoring, Evaluation & Learning (MEAL).</p>
+      </article>
+      <article class="group rounded-[2rem] border border-line p-7 hover:shadow-card hover:-translate-y-1 transition bg-white">
+        <div class="h-12 w-12 rounded-2xl bg-accent text-white grid place-items-center font-bold">02</div>
+        <h3 class="mt-6 text-xl font-bold text-ink">ICT Services & Support</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-500">Computers and peripherals, hardware and software repairs, IT consultancy, programming and practical digital support.</p>
+      </article>
+      <article class="group rounded-[2rem] border border-line p-7 hover:shadow-card hover:-translate-y-1 transition bg-white">
+        <div class="h-12 w-12 rounded-2xl bg-primary text-white grid place-items-center font-bold">03</div>
+        <h3 class="mt-6 text-xl font-bold text-ink">Supplies & Procurement</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-500">Office consumables, corporate printing, office equipment, furniture and specialized medical equipment.</p>
+      </article>
+      <article class="group rounded-[2rem] border border-line p-7 hover:shadow-card hover:-translate-y-1 transition bg-white">
+        <div class="h-12 w-12 rounded-2xl bg-accent text-white grid place-items-center font-bold">04</div>
+        <h3 class="mt-6 text-xl font-bold text-ink">Events Management</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-500">Full-scale organization of corporate conventions, conferences and administrative event support.</p>
+      </article>
+      <article class="group rounded-[2rem] border border-line p-7 hover:shadow-card hover:-translate-y-1 transition bg-white md:col-span-2 lg:col-span-2">
+        <div class="h-12 w-12 rounded-2xl bg-primary text-white grid place-items-center font-bold">05</div>
+        <h3 class="mt-6 text-xl font-bold text-ink">Professional Training & Capacity Building</h3>
+        <p class="mt-3 max-w-2xl text-sm leading-7 text-slate-500">Our flagship offering: practical, high-impact learning experiences designed around modern institutional challenges, workforce capability and operational performance.</p>
+        <a href="#training" class="inline-flex mt-5 text-sm font-bold text-primary hover:text-primaryDark">View training portfolio →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINING -->
+<section id="training" class="py-20 sm:py-24 bg-primaryDark text-white overflow-hidden">
+  <div class="mx-auto max-w-7xl px-5 sm:px-6">
+    <div class="grid lg:grid-cols-[.72fr_1.28fr] gap-12 lg:gap-20 items-start">
+      <div class="lg:sticky lg:top-32">
+        <div class="text-xs uppercase tracking-[.2em] font-bold text-accent">Featured training portfolio</div>
+        <h2 class="display mt-4 text-4xl sm:text-5xl leading-tight">Training that prepares people for the challenges ahead.</h2>
+        <p class="mt-6 text-white/65 leading-8">We design and deliver learning experiences that translate complex topics into practical workflows, stronger teams and better institutional outcomes.</p>
+        <a href="#contact" class="inline-flex mt-8 rounded-full bg-accent px-6 py-3.5 text-sm font-bold text-white hover:bg-orange-600 transition">Discuss a Training Need</a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="rounded-[2rem] border border-white/10 bg-white/[.06] p-6">
+          <div class="text-accent font-bold text-sm">01</div>
+          <h3 class="mt-4 text-lg font-bold">AI for Administration</h3>
+          <p class="mt-2 text-sm leading-7 text-white/60">Practical workflows for AI-assisted scheduling, resource allocation and predictive supply chain management.</p>
+        </div>
+        <div class="rounded-[2rem] border border-white/10 bg-white/[.06] p-6">
+          <div class="text-accent font-bold text-sm">02</div>
+          <h3 class="mt-4 text-lg font-bold">Cybersecurity & Health Information Governance</h3>
+          <p class="mt-2 text-sm leading-7 text-white/60">Managing electronic records, ransomware risks and data privacy compliance.</p>
+        </div>
+        <div class="rounded-[2rem] border border-white/10 bg-white/[.06] p-6">
+          <div class="text-accent font-bold text-sm">03</div>
+          <h3 class="mt-4 text-lg font-bold">Burnout & Resilient Workforces</h3>
+          <p class="mt-2 text-sm leading-7 text-white/60">Evidence-based organizational interventions that support staff wellbeing, retention and psychological safety.</p>
+        </div>
+        <div class="rounded-[2rem] border border-white/10 bg-white/[.06] p-6">
+          <div class="text-accent font-bold text-sm">04</div>
+          <h3 class="mt-4 text-lg font-bold">Conflict Resolution & Peer Communication</h3>
+          <p class="mt-2 text-sm leading-7 text-white/60">Practical tools for communication, workplace policies, peer resolution and grievance prevention.</p>
+        </div>
+        <div class="rounded-[2rem] border border-white/10 bg-white/[.06] p-6">
+          <div class="text-accent font-bold text-sm">05</div>
+          <h3 class="mt-4 text-lg font-bold">Public Financial Management & Compliance</h3>
+          <p class="mt-2 text-sm leading-7 text-white/60">Programs supporting financial discipline, risk management, controls and institutional accountability.</p>
+        </div>
+        <div class="rounded-[2rem] border border-white/10 bg-white/[.06] p-6">
+          <div class="text-accent font-bold text-sm">06</div>
+          <h3 class="mt-4 text-lg font-bold">Research, Data & Financial Literacy</h3>
+          <p class="mt-2 text-sm leading-7 text-white/60">Data collection, research methods, financial statement interpretation, budgeting and personal finance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USP / PROCESS -->
+<section class="py-20 sm:py-24 bg-mist">
+  <div class="mx-auto max-w-7xl px-5 sm:px-6">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
+      <div>
+        <div class="text-xs uppercase tracking-[.2em] font-bold text-accent">Our unique proposition</div>
+        <h2 class="display mt-4 text-4xl sm:text-5xl text-ink">The right people, assembled around the right problem.</h2>
+        <p class="mt-6 leading-8 text-slate-600">Fairview does not depend on a static, limited roster. We maintain access to a multidisciplinary pool of specialists and curate the right team for each assignment.</p>
+
+        <div class="mt-8 space-y-4">
+          <div class="flex gap-4 rounded-3xl border border-line bg-white p-5">
+            <div class="h-10 w-10 shrink-0 rounded-xl bg-primary/10 text-primary grid place-items-center font-bold">✓</div>
+            <div><h3 class="font-bold text-ink">On-demand caliber of experts</h3><p class="mt-1 text-sm text-slate-500 leading-6">Statisticians, accountants, IT engineers and organizational development specialists available according to project needs.</p></div>
+          </div>
+          <div class="flex gap-4 rounded-3xl border border-line bg-white p-5">
+            <div class="h-10 w-10 shrink-0 rounded-xl bg-accent/10 text-accent grid place-items-center font-bold">✓</div>
+            <div><h3 class="font-bold text-ink">Agile engagement models</h3><p class="mt-1 text-sm text-slate-500 leading-6">Flexible delivery structures including short-term technical deployments, bespoke in-house workshops, and comprehensive retainer frameworks.</p></div>
+          </div>
+          <div class="flex gap-4 rounded-3xl border border-line bg-white p-5">
+            <div class="h-10 w-10 shrink-0 rounded-xl bg-primary/10 text-primary grid place-items-center font-bold">✓</div>
+            <div><h3 class="font-bold text-ink">Rigorous compliance</h3><p class="mt-1 text-sm text-slate-500 leading-6">Fully tax-compliant with multiple valid Revenue Services Lesotho (RSL) clearance certificates. </p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-[2.5rem] bg-white border border-line p-7 sm:p-9 shadow-card">
+        <div class="text-xs uppercase tracking-[.2em] font-bold text-primary">How we engage</div>
+        <div class="mt-8 space-y-7">
+          <div class="flex gap-5">
+            <div class="text-2xl font-bold text-accent">01</div>
+            <div><h3 class="font-bold text-ink">Understand</h3><p class="mt-1 text-sm text-slate-500 leading-6">We define your institutional challenge, objectives, audience and required outcomes.</p></div>
+          </div>
+          <div class="h-px bg-line"></div>
+          <div class="flex gap-5">
+            <div class="text-2xl font-bold text-accent">02</div>
+            <div><h3 class="font-bold text-ink">Curate</h3><p class="mt-1 text-sm text-slate-500 leading-6">We assemble the appropriate specialists, resources and delivery model.</p></div>
+          </div>
+          <div class="h-px bg-line"></div>
+          <div class="flex gap-5">
+            <div class="text-2xl font-bold text-accent">03</div>
+            <div><h3 class="font-bold text-ink">Deliver</h3><p class="mt-1 text-sm text-slate-500 leading-6">We execute with structured documentation, review checkpoints and client feedback loops.</p></div>
+          </div>
+          <div class="h-px bg-line"></div>
+          <div class="flex gap-5">
+            <div class="text-2xl font-bold text-accent">04</div>
+            <div><h3 class="font-bold text-ink">Improve</h3><p class="mt-1 text-sm text-slate-500 leading-6">We use feedback and results to strengthen delivery and support sustainable institutional performance.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTS -->
+<section id="experts" class="py-20 sm:py-24">
+  <div class="mx-auto max-w-7xl px-5 sm:px-6">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+      <div class="max-w-3xl">
+        <div class="text-xs uppercase tracking-[.2em] font-bold text-accent">Expert network</div>
+        <h2 class="display mt-4 text-4xl sm:text-5xl text-ink">Specialists available for the work that matters.</h2>
+      </div>
+      <p class="max-w-md text-sm leading-7 text-slate-500">Our associate network scales dynamically through vetted subject matter experts and specialized consultants.</p>
+    </div>
+
+    <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="rounded-[2rem] border border-line p-6 bg-white hover:shadow-card transition">
+        <div class="h-12 w-12 rounded-full bg-primary text-white grid place-items-center font-bold">MM</div>
+        <h3 class="mt-5 font-bold text-lg text-ink">Motseoa Molahlehi</h3>
+        <p class="text-xs font-semibold text-primary mt-1">Senior Statistician & Research Specialist</p>
+        <p class="mt-3 text-sm leading-6 text-slate-500">Retired Head of the Statistical Business Register and National Accounts at the Bureau of Statistics. Holds a Master’s in OAicial Statistics. Readily available for specialized training in Data Collection Methodologies, Statistical Business Registers, Sampling Techniques, and Quantitative Research.</p>
+      </div>
+      <div class="rounded-[2rem] border border-line p-6 bg-white hover:shadow-card transition">
+        <div class="h-12 w-12 rounded-full bg-accent text-white grid place-items-center font-bold">PQ</div>
+        <h3 class="mt-5 font-bold text-lg text-ink">Paki Desmond Qhobela</h3>
+        <p class="text-xs font-semibold text-primary mt-1">Finance & Governance Executive</p>
+        <p class="mt-3 text-sm leading-6 text-slate-500">Chartered Accountant (Lesotho) with an MBA and extensive experience managing corporate 6 services, risk, ICT governance, and internal controls in complex regulated environments. Available for training in Corporate Governance, Advanced Public Financial Management, Risk Mitigation, and Cost Modelling. </p>
+      </div>
+      <div class="rounded-[2rem] border border-line p-6 bg-white hover:shadow-card transition">
+        <div class="h-12 w-12 rounded-full bg-primary text-white grid place-items-center font-bold">LN</div>
+        <h3 class="mt-5 font-bold text-lg text-ink">Lehlohonolo Robert 'Neko</h3>
+        <p class="text-xs font-semibold text-primary mt-1">M&A and Administration Expert</p>
+        <p class="mt-3 text-sm leading-6 text-slate-500">Holds a Master of International Development Administration (MIDA) with a focus on Monitoring, Evaluation, and Learning (MEAL) from Andrews University. Experienced hospital and project administrator available for training in Project Implementation, Needs Assessment, Operations Management, and Result-Based Management. </p>
+      </div>
+      <div class="rounded-[2rem] border border-line p-6 bg-white hover:shadow-card transition">
+        <div class="h-12 w-12 rounded-full bg-accent text-white grid place-items-center font-bold">KN</div>
+        <h3 class="mt-5 font-bold text-lg text-ink">Keletso Ntseno</h3>
+        <p class="text-xs font-semibold text-primary mt-1">AI & Software Engineering Specialist</p>
+        <p class="mt-3 text-sm leading-6 text-slate-500">BCom Information Systems top achiever specializing in AI engineering, Python development, automation, and cloud deployments. Available for training workshops on Artificial Intelligence Implementation and Digital Workflow Optimization.</p>
+      </div>
+      <div class="rounded-[2rem] border border-line p-6 bg-white hover:shadow-card transition">
+        <div class="h-12 w-12 rounded-full bg-primary text-white grid place-items-center font-bold">SK</div>
+        <h3 class="mt-5 font-bold text-lg text-ink">Sindiswa Agnes Kometsi</h3>
+        <p class="text-xs font-semibold text-primary mt-1">Accounting & Audit Professional</p>
+        <p class="mt-3 text-sm leading-6 text-slate-500">Auditor and accounting specialist skilled in internal controls, financial reporting under IFRS. Available for training on Internal Controls, Bookkeeping Basics, and Financial Compliance.</p>
+      </div>
+      <div class="rounded-[2rem] border border-primary/15 bg-primary/5 p-6 flex flex-col justify-between">
+        <div>
+          <div class="text-xs uppercase tracking-[.2em] font-bold text-primary">Need a specialist?</div>
+          <h3 class="mt-4 text-2xl font-bold text-ink">Tell us what you are trying to solve.</h3>
+          <p class="mt-3 text-sm leading-7 text-slate-500">We can curate the appropriate combination of technical and professional expertise for your assignment.</p>
+        </div>
+        <a href="#contact" class="mt-7 inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-bold text-white hover:bg-primaryDark transition">Start a Conversation →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="py-20 sm:py-24 bg-mist">
+  <div class="mx-auto max-w-7xl px-5 sm:px-6">
+    <div class="grid lg:grid-cols-[.85fr_1.15fr] gap-12 lg:gap-20">
+      <div>
+        <div class="text-xs uppercase tracking-[.2em] font-bold text-accent">Experience & track record</div>
+        <h2 class="display mt-4 text-4xl sm:text-5xl text-ink">Practical experience across public, private and development contexts.</h2>
+        <p class="mt-6 text-slate-600 leading-8">Fairview's experience includes specialized training, financial management, risk, research and advisory engagements.</p>
+
+        <div class="mt-8 rounded-[2rem] bg-primary text-white p-7">
+          <div class="text-xs uppercase tracking-[.18em] text-white/60">Selected engagements & experience</div>
+          <div class="mt-5 text-3xl font-bold">Institutional capability</div>
+          <p class="mt-2 text-sm leading-6 text-white/65">Supporting organizations and groups with practical knowledge, financial insight and operational tools.</p>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="rounded-3xl border border-line bg-white p-6">
+          <div class="flex gap-4"><span class="text-accent font-bold">01</span><p class="text-sm leading-7 text-slate-600">Delivered specialized record-keeping training for business people under the Lesotho Institute of Accountants (LIA) banner.</p></div>
+        </div>
+        <div class="rounded-3xl border border-line bg-white p-6">
+          <div class="flex gap-4"><span class="text-accent font-bold">02</span><p class="text-sm leading-7 text-slate-600">Conducted high-level risk management training for government employees within the Ministry of Finance.</p></div>
+        </div>
+        <div class="rounded-3xl border border-line bg-white p-6">
+          <div class="flex gap-4"><span class="text-accent font-bold">03</span><p class="text-sm leading-7 text-slate-600">Delivered presentations on financial statement interpretation, cashflows and budgeting to entrepreneurs in government-supported incubation initiatives.</p></div>
+        </div>
+        <div class="rounded-3xl border border-line bg-white p-6">
+          <div class="flex gap-4"><span class="text-accent font-bold">04</span><p class="text-sm leading-7 text-slate-600">Provided personal finance and family economy education to members of the public.</p></div>
+        </div>
+        <div class="rounded-3xl border border-line bg-white p-6">
+          <div class="flex gap-4"><span class="text-accent font-bold">05</span><p class="text-sm leading-7 text-slate-600">Established a growing portfolio of corporate accounting, tax advisory and institutional research engagements.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS / SECTORS -->
+<section class="py-20 sm:py-24">
+  <div class="mx-auto max-w-7xl px-5 sm:px-6">
+    <div class="text-center max-w-3xl mx-auto">
+      <div class="text-xs uppercase tracking-[.2em] font-bold text-accent">Who we serve</div>
+      <h2 class="display mt-4 text-4xl sm:text-5xl text-ink">Built for institutions, businesses and development partners.</h2>
+      <p class="mt-5 text-slate-600 leading-7">Our geographic scope covers nationwide deployments across all districts of Lesotho.</p>
+    </div>
+
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <span class="rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold">Government Ministries</span>
+      <span class="rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold">Parastatals</span>
+      <span class="rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold">Public Institutions</span>
+      <span class="rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold">Corporate Businesses</span>
+      <span class="rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold">SMEs</span>
+      <span class="rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold">NGOs</span>
+      <span class="rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold">Development Partners</span>
+    </div>
+
+    <div class="mt-12 grid md:grid-cols-3 gap-4">
+      <div class="rounded-[2rem] border border-line bg-mist p-7 text-center">
+        <div class="text-xs uppercase tracking-[.18em] text-primary font-bold">Client / Partner</div>
+        <div class="mt-3 text-lg font-bold text-ink">Ministry of Finance</div>
+        <div class="mt-1 text-xs text-slate-500">Government of Lesotho</div>
+      </div>
+      <div class="rounded-[2rem] border border-line bg-mist p-7 text-center">
+        <div class="text-xs uppercase tracking-[.18em] text-primary font-bold">Client / Partner</div>
+        <div class="mt-3 text-lg font-bold text-ink">Lesotho Institute of Accountants</div>
+        <div class="mt-1 text-xs text-slate-500">LIA</div>
+      </div>
+      <div class="rounded-[2rem] border border-line bg-mist p-7 text-center">
+        <div class="text-xs uppercase tracking-[.18em] text-primary font-bold">Compliance</div>
+        <div class="mt-3 text-lg font-bold text-ink">Revenue Services Lesotho</div>
+        <div class="mt-1 text-xs text-slate-500">Tax-compliant registered entity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY / COMPLIANCE -->
+<section class="py-20 sm:py-24 bg-primaryDark text-white">
+  <div class="mx-auto max-w-7xl px-5 sm:px-6">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div>
+        <div class="text-xs uppercase tracking-[.2em] font-bold text-accent">Quality & standards</div>
+        <h2 class="display mt-4 text-4xl sm:text-5xl">Structured delivery. Documented quality. Responsible practice.</h2>
+        <p class="mt-6 text-white/65 leading-8">Fairview maintains internal documentation controls, multi-stage review checkpoints and client feedback loops, with delivery aligned to relevant statutory frameworks, tax laws and professional standards.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="rounded-3xl border border-white/10 bg-white/[.06] p-6">
+          <div class="text-accent text-2xl">✓</div>
+          <h3 class="mt-4 font-bold">Internal controls</h3>
+          <p class="mt-2 text-sm leading-6 text-white/55">Documented processes and review checkpoints support consistent delivery.</p>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-white/[.06] p-6">
+          <div class="text-accent text-2xl">✓</div>
+          <h3 class="mt-4 font-bold">Regulatory alignment</h3>
+          <p class="mt-2 text-sm leading-6 text-white/55">Work is delivered with attention to national statutory and professional requirements.</p>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-white/[.06] p-6">
+          <div class="text-accent text-2xl">✓</div>
+          <h3 class="mt-4 font-bold">Client feedback</h3>
+          <p class="mt-2 text-sm leading-6 text-white/55">Feedback loops help improve delivery and maintain practical relevance.</p>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-white/[.06] p-6">
+          <div class="text-accent text-2xl">✓</div>
+          <h3 class="mt-4 font-bold">Local capability</h3>
+          <p class="mt-2 text-sm leading-6 text-white/55">A Lesotho-based team with nationwide logistical deployment capability.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20 sm:py-24">
+  <div class="mx-auto max-w-4xl px-5 sm:px-6">
+    <div class="text-center">
+      <div class="text-xs uppercase tracking-[.2em] font-bold text-accent">Frequently asked</div>
+      <h2 class="display mt-4 text-4xl sm:text-5xl text-ink">Questions about working with Fairview.</h2>
+    </div>
+
+    <div class="mt-10 space-y-3">
+      <div class="rounded-3xl border border-line overflow-hidden">
+        <button @click="openFaq=openFaq===1?null:1" class="w-full flex items-center justify-between gap-5 text-left p-6 font-bold text-ink">
+          <span>Can Fairview design training specifically for our institution?</span>
+          <span class="text-primary text-xl" x-text="openFaq===1?'−':'+'"></span>
+        </button>
+        <div x-show="openFaq===1" x-collapse class="px-6 pb-6 text-sm leading-7 text-slate-500">Yes. The training portfolio can be adapted to the institution, audience, operational context and desired learning outcomes.</div>
+      </div>
+      <div class="rounded-3xl border border-line overflow-hidden">
+        <button @click="openFaq=openFaq===2?null:2" class="w-full flex items-center justify-between gap-5 text-left p-6 font-bold text-ink">
+          <span>Do you provide services outside Maseru?</span>
+          <span class="text-primary text-xl" x-text="openFaq===2?'−':'+'"></span>
+        </button>
+        <div x-show="openFaq===2" x-collapse class="px-6 pb-6 text-sm leading-7 text-slate-500">Fairview's stated geographic scope is nationwide deployment across all districts of Lesotho.</div>
+      </div>
+      <div class="rounded-3xl border border-line overflow-hidden">
+        <button @click="openFaq=openFaq===3?null:3" class="w-full flex items-center justify-between gap-5 text-left p-6 font-bold text-ink">
+          <span>Can we engage Fairview for a short-term assignment?</span>
+          <span class="text-primary text-xl" x-text="openFaq===3?'−':'+'"></span>
+        </button>
+        <div x-show="openFaq===3" x-collapse class="px-6 pb-6 text-sm leading-7 text-slate-500">Yes. Agile engagement models include short-term technical deployments, bespoke workshops and longer-term retainer frameworks.</div>
+      </div>
+      <div class="rounded-3xl border border-line overflow-hidden">
+        <button @click="openFaq=openFaq===4?null:4" class="w-full flex items-center justify-between gap-5 text-left p-6 font-bold text-ink">
+          <span>How do we discuss a project or training requirement?</span>
+          <span class="text-primary text-xl" x-text="openFaq===4?'−':'+'"></span>
+        </button>
+        <div x-show="openFaq===4" x-collapse class="px-6 pb-6 text-sm leading-7 text-slate-500">Contact Mr. Thato Makau at +266 5804 9252 or makaut@lesotho.adventist.org to discuss your requirement.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section id="contact" class="py-20 sm:py-24 bg-cream">
+  <div class="mx-auto max-w-7xl px-5 sm:px-6">
+    <div class="rounded-[2.5rem] bg-primary text-white p-7 sm:p-10 lg:p-14 overflow-hidden relative">
+      <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-accent/20 blur-3xl"></div>
+      <div class="relative grid lg:grid-cols-[.9fr_1.1fr] gap-10 lg:gap-16">
+        <div>
+          <div class="text-xs uppercase tracking-[.2em] font-bold text-white/55">Start a conversation</div>
+          <h2 class="display mt-4 text-4xl sm:text-5xl leading-tight">Empower your institution with the right expertise.</h2>
+          <p class="mt-5 text-white/65 leading-7">Whether you need a specialized seminar, advisory support, digital workflow expertise, procurement or administrative event support, let's discuss the outcome you need.</p>
+
+          <div class="mt-8 space-y-3 text-sm">
+            <a href="tel:+26658049252" class="flex items-center gap-3 text-white hover:text-orange-200 transition"><span class="h-9 w-9 rounded-xl bg-white/10 grid place-items-center">☎</span> +266 5804 9252</a>
+            <a href="mailto:makaut@fairview.co.ls" class="flex items-center gap-3 text-white hover:text-orange-200 transition"><span class="h-9 w-9 rounded-xl bg-white/10 grid place-items-center">@</span> makaut@fairview.co.ls</a>
+            <div class="flex items-start gap-3 text-white/75"><span class="h-9 w-9 shrink-0 rounded-xl bg-white/10 grid place-items-center">⌖</span> Hlathe Majara, Khubetsoana Pela Rural Water Supply, Maseru 100, Lesotho</div>
+          </div>
+        </div>
+
+        <form action="#" method="post" class="rounded-[2rem] bg-white p-5 sm:p-7 text-ink shadow-xl">
+          <div class="text-lg font-bold">Request a consultation</div>
+          <p class="mt-1 text-xs text-slate-500">Tell us what you need and we will use the details to understand your enquiry.</p>
+          <div class="mt-6 grid sm:grid-cols-2 gap-3">
+            <input type="text" name="name" placeholder="Full name" class="w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary" />
+            <input type="text" name="organization" placeholder="Organization" class="w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary" />
+            <input type="email" name="email" placeholder="Email address" class="w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary" />
+            <input type="tel" name="phone" placeholder="Phone number" class="w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary" />
+          </div>
+          <select name="service" class="mt-3 w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary bg-white">
+            <option value="">What can we help with?</option>
+            <option>Professional Training & Capacity Building</option>
+            <option>Consultancy & Advisory</option>
+            <option>ICT Services & Support</option>
+            <option>Supplies & Procurement</option>
+            <option>Events Management</option>
+            <option>Other</option>
+          </select>
+          <textarea name="message" rows="4" placeholder="Briefly describe your requirement" class="mt-3 w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary"></textarea>
+          <button type="submit" class="mt-3 w-full rounded-full bg-primary px-5 py-3.5 text-sm font-bold text-white hover:bg-primaryDark transition">Send Enquiry →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-[#12162A] text-white">
+  <div class="mx-auto max-w-7xl px-5 sm:px-6 py-14">
+    <div class="grid md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] gap-10">
+      <div>
+        <div class="flex items-center gap-3">
+          <div class="h-11 w-11 rounded-2xl bg-primary grid place-items-center font-bold">F</div>
+          <div><div class="font-bold">Fairview Solutions</div><div class="text-[10px] uppercase tracking-[.18em] text-white/40 mt-1">Consulting • Training • Supply</div></div>
+        </div>
+        <p class="mt-5 max-w-sm text-sm leading-7 text-white/50">One company delivering integrated consulting, capacity building, technology support, procurement and events solutions with local impact.</p>
+      </div>
+
+      <div>
+        <div class="text-xs uppercase tracking-[.18em] text-white/40 font-bold">Company</div>
+        <div class="mt-4 space-y-3 text-sm text-white/65">
+          <a href="#about" class="block hover:text-white">About Us</a>
+          <a href="#services" class="block hover:text-white">Services</a>
+          <a href="#experts" class="block hover:text-white">Expert Network</a>
+          <a href="#experience" class="block hover:text-white">Experience</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="text-xs uppercase tracking-[.18em] text-white/40 font-bold">Services</div>
+        <div class="mt-4 space-y-3 text-sm text-white/65">
+          <a href="#training" class="block hover:text-white">Training & Capacity Building</a>
+          <a href="#services" class="block hover:text-white">Consultancy & Advisory</a>
+          <a href="#services" class="block hover:text-white">ICT Support</a>
+          <a href="#services" class="block hover:text-white">Procurement & Events</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="text-xs uppercase tracking-[.18em] text-white/40 font-bold">Contact</div>
+        <div class="mt-4 space-y-3 text-sm text-white/65">
+          <a href="tel:+26658049252" class="block hover:text-white">+266 5804 9252</a>
+          <a href="mailto:makaut@lesotho.adventist.org" class="block hover:text-white">makaut@fairview.co.ls</a>
+          <div>Hlathe Majara, Khubetsoana Pela Rural Water Supply, Maseru 100, Lesotho</div>
+          <div>Mon – Fri, 08:00 – 17:00</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3 justify-between text-[11px] text-white/40">
+      <div>© 2025 Fairview Solutions (Pty) Ltd • All rights reserved.</div>
+      <div>Build and Deployed • Penniel Software Solutions</div>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE CTA -->
+<div class="lg:hidden fixed bottom-3 left-3 right-3 z-50">
+  <div class="rounded-2xl bg-primary text-white p-2 shadow-2xl shadow-black/20 border border-white/10 flex gap-2">
+    <a href="tel:+26658049252" class="flex-1 rounded-xl px-4 py-3 text-center text-sm font-bold bg-white/10">Call</a>
+    <a href="#contact" class="flex-[2] rounded-xl px-4 py-3 text-center text-sm font-bold bg-accent">Request Consultation</a>
+  </div>
+</div>
+
+</body>
+</html>
