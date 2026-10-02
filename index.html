@@ -728,16 +728,39 @@
           </div>
         </div>
 
-        <form action="#" method="post" class="rounded-[2rem] bg-white p-5 sm:p-7 text-ink shadow-xl">
+        <form action="send-enquiry.php" method="post" class="rounded-[2rem] bg-white p-5 sm:p-7 text-ink shadow-xl">
           <div class="text-lg font-bold">Request a consultation</div>
           <p class="mt-1 text-xs text-slate-500">Tell us what you need and we will use the details to understand your enquiry.</p>
+
+          <?php if (isset($_GET['status']) && $_GET['status'] === 'success'): ?>
+
+              <div class="mb-4 rounded-2xl bg-green-50 border border-green-200 px-4 py-3 text-sm text-green-700">
+                  Thank you. Your enquiry has been sent successfully. We will get back to you shortly.
+              </div>
+
+          <?php elseif (isset($_GET['status']) && $_GET['status'] === 'error'): ?>
+
+              <div class="mb-4 rounded-2xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+                  Sorry, we could not send your enquiry. Please try again or contact us directly.
+              </div>
+
+          <?php endif; ?>
+
           <div class="mt-6 grid sm:grid-cols-2 gap-3">
-            <input type="text" name="name" placeholder="Full name" class="w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary" />
-            <input type="text" name="organization" placeholder="Organization" class="w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary" />
-            <input type="email" name="email" placeholder="Email address" class="w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary" />
-            <input type="tel" name="phone" placeholder="Phone number" class="w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary" />
+            <input type="text" name="name" placeholder="Full name" required
+              class="w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary" />
+
+            <input type="text" name="organization" placeholder="Organization"
+              class="w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary" />
+
+            <input type="email" name="email" placeholder="Email address" required
+              class="w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary" />
+
+            <input type="tel" name="phone" placeholder="Phone number"
+              class="w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary" />
           </div>
-          <select name="service" class="mt-3 w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary bg-white">
+          <select name="service" required
+            class="mt-3 w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary bg-white">
             <option value="">What can we help with?</option>
             <option>Professional Training & Capacity Building</option>
             <option>Consultancy & Advisory</option>
@@ -746,7 +769,9 @@
             <option>Events Management</option>
             <option>Other</option>
           </select>
-          <textarea name="message" rows="4" placeholder="Briefly describe your requirement" class="mt-3 w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary"></textarea>
+          <textarea name="message" rows="4" required
+              placeholder="Briefly describe your requirement"
+              class="mt-3 w-full rounded-2xl border border-line px-4 py-3.5 text-sm outline-none focus:border-primary"></textarea>
           <button type="submit" class="mt-3 w-full rounded-full bg-primary px-5 py-3.5 text-sm font-bold text-white hover:bg-primaryDark transition">Send Enquiry →</button>
         </form>
       </div>
