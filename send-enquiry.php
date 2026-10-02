@@ -1,7 +1,14 @@
 <?php
 
+header('Content-Type: application/json; charset=UTF-8');
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: index.php');
+
+    echo json_encode([
+        'success' => false,
+        'message' => 'Invalid request.'
+    ]);
+
     exit;
 }
 
@@ -18,13 +25,23 @@ $message = trim($_POST['message'] ?? '');
 
 // Validate required fields
 if ($name === '' || $email === '' || $service === '' || $message === '') {
-    header('Location: index.php?status=error&message=required');
+
+    echo json_encode([
+        'success' => false,
+        'message' => 'Please complete all required fields.'
+    ]);
+
     exit;
 }
 
 // Validate email
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    header('Location: index.php?status=error&message=email');
+
+    echo json_encode([
+        'success' => false,
+        'message' => 'Please enter a valid email address.'
+    ]);
+
     exit;
 }
 
@@ -42,22 +59,34 @@ $subject = 'New Consultation Enquiry - Fairview Solutions';
 $emailBody = "A new consultation enquiry has been submitted.\n\n";
 
 $emailBody .= "Name: " . $name . "\n";
-$emailBody .= "Organization: " . ($organization ?: 'Not provided') . "\n";
+
+$emailBody .= "Organization: " .
+    ($organization ?: 'Not provided') . "\n";
+
 $emailBody .= "Email: " . $email . "\n";
-$emailBody .= "Phone: " . ($phone ?: 'Not provided') . "\n";
+
+$emailBody .= "Phone: " .
+    ($phone ?: 'Not provided') . "\n";
+
 $emailBody .= "Service: " . $service . "\n\n";
 
 $emailBody .= "Message:\n";
+
 $emailBody .= $message . "\n\n";
 
 $emailBody .= "----------------------------------------\n";
+
 $emailBody .= "Sent from the Fairview Solutions website.\n";
 
 // Email headers
 $headers = [];
+
 $headers[] = 'From: Fairview Website <info@fairview.co.ls>';
+
 $headers[] = 'Reply-To: ' . $email;
+
 $headers[] = 'MIME-Version: 1.0';
+
 $headers[] = 'Content-Type: text/plain; charset=UTF-8';
 
 // Send email
@@ -68,11 +97,21 @@ $sent = mail(
     implode("\r\n", $headers)
 );
 
-// Redirect based on result
+// Return response to AJAX
 if ($sent) {
-    header('Location: index.php?status=success');
+
+    echo json_encode([
+        'success' => true,
+        'message' => 'Thank you! Your enquiry has been sent successfully. We will get back to you shortly.'
+    ]);
+
     exit;
 }
 
-header('Location: index.php?status=error&message=send');
+// Failed
+echo json_encode([
+    'success' => false,
+    'message' => 'We could not send your enquiry. Please try again or contact us directly.'
+]);
+
 exit;
