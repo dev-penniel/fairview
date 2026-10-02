@@ -106,9 +106,8 @@
       </nav>
 
       <div class="hidden lg:flex items-center gap-3">
-        <a href="https://wa.me/26658049252?text=Hello%20Fairview%20Accounting%20Professionals%2C%20I%20would%20like%20to%20make%20an%20enquiry."
-          target="_blank"
-          class="px-4 py-2.5 rounded-full text-sm font-semibold text-primary hover:bg-mist transition">
+        <a class="block px-4 py-3 rounded-2xl bg-primary text-white font-semibold" href="https://wa.me/26658049252?text=Hello%20Fairview%20Accounting%20Professionals%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+          target="_blank">
             WhatsApp
         </a>
         <a href="#contact" class="px-5 py-3 rounded-full bg-primary text-white text-sm font-semibold shadow-lg shadow-primary/20 hover:bg-primaryDark transition">Request a Consultation</a>
@@ -127,7 +126,11 @@
         <a @click="mobile=false" href="#training" class="block px-4 py-3 rounded-2xl hover:bg-white">Training</a>
         <a @click="mobile=false" href="#experts" class="block px-4 py-3 rounded-2xl hover:bg-white">Experts</a>
         <a @click="mobile=false" href="#experience" class="block px-4 py-3 rounded-2xl hover:bg-white">Experience</a>
-        <a @click="mobile=false" href="#contact" class="block px-4 py-3 rounded-2xl bg-primary text-white font-semibold">Request a Consultation</a>
+        <a href="https://wa.me/26658049252?text=Hello%20Fairview%20Accounting%20Professionals%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+          target="_blank"
+          class="px-4 py-8 bg-primary rounded-full text-sm font-semibold text-white transition">
+            WhatsApp Us
+        </a>
       </div>
     </div>
   </div>
@@ -873,11 +876,7 @@
 <div class="lg:hidden fixed bottom-3 left-3 right-3 z-50">
   <div class="rounded-full bg-primary text-white p-2 shadow-2xl shadow-black/20 border border-white/10 flex gap-2">
     <a href="tel:+26658049252" class="flex-1 rounded-full px-4 py-3 text-center text-sm font-bold bg-white/10">Call</a>
-    <a href="https://wa.me/26658049252?text=Hello%20Fairview%20Accounting%20Professionals%2C%20I%20would%20like%20to%20make%20an%20enquiry."
-      target="_blank"
-      class="px-4 py-2.5 rounded-full text-sm font-semibold text-white transition">
-        WhatsApp Us
-    </a>
+    <a @click="mobile=false" href="#contact" class="block px-4 py-3 bg-primary text-white font-semibold">Request a Consultation</a>
   </div>
 </div>
 
